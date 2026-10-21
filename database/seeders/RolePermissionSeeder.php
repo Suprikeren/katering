@@ -28,14 +28,10 @@ class RolePermissionSeeder extends Seeder
         $superAdmin = Role::findOrCreate('super-admin');
         $superAdmin->syncPermissions(Permission::all());
 
-        $admin = Role::findOrCreate('admin');
-        $admin->syncPermissions(
-            Permission::query()
-                ->whereIn('name', ['user.index', 'user.create', 'user.update'])
-                ->get()
-        );
+        $customer = Role::findOrCreate('customer');
+        $customer->syncPermissions([]);
 
-        $member = Role::findOrCreate('member');
-        $member->syncPermissions([]);
+        $merchant = Role::findOrCreate('merchant');
+        $merchant->syncPermissions([]);
     }
 }

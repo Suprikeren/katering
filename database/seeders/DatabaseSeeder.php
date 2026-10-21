@@ -16,15 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(RolePermissionSeeder::class);
+        $this->call(UserSeeder::class);
 
-        $user = User::query()->firstOrCreate(
-            ['email' => 'test@example.com'],
-            [
-                'name' => 'Test User',
-                'password' => 'password',
-            ],
-        );
+        // $user = User::query()->firstOrCreate(
+        //     ['email' => 'super-admin@example.com'],
+        //     [
+        //         'name' => 'Test User',
+        //         'password' => 'password',
+        //     ],
+        // );
 
-        $user->assignRole('super-admin', 'admin');
+        // $user->assignRole('super-admin');
     }
 }
