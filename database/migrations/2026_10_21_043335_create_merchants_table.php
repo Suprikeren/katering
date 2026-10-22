@@ -9,25 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up(): void
-{
-    Schema::create('merchants', function (Blueprint $table) {
-        $table->id();
-        $table->string('slug');
-        $table->unsignedBigInteger('user_id')->unique();
-        $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
-
-        $table->string('company_name');
-        $table->text('address');
-        $table->string('phone', 30);
-        $table->string('food_type', 100);
-        $table->text('description')->nullable();
-        $table->timestamps();
-    });
-}
+    public function up(): void
+    {
+        Schema::create('merchants', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->string('thumbnail')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('company_name')->nullable();
+            $table->text('address')->nullable();
+            $table->string('phone', 30)->nullable();
+            $table->string('food_type', 100)->nullable();
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.

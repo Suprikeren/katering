@@ -25,8 +25,6 @@ return new class extends Migration
             ->references('id')
             ->on('customers')
             ->onDelete('restrict');
-
-        $table->string('invoice_number', 50)->unique();
         $table->date('delivery_date');
         $table->text('delivery_address');
 

@@ -9,21 +9,24 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up(): void
-{
-    Schema::create('invoices', function (Blueprint $table) {
-        $table->id();
+    public function up(): void
+    {
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->id();
 
-        $table->unsignedBigInteger('order_id')->unique();
-        $table->foreign('order_id')
-            ->references('id')
-            ->on('orders')
-            ->onDelete('restrict');
+            $table->unsignedBigInteger('order_id')->unique();
+            $table->foreign('order_id')
+                ->references('id')
+                ->on('orders')
+                ->onDelete('restrict');
 
-        $table->timestamp('issued_at')->useCurrent();
-        $table->timestamps();
-    });
-}
+            $table->string('invoice_number')->unique();
+            $table->timestamp('issued_at')->useCurrent();
+
+            $table->timestamps();
+        });
+
+    }
 
     /**
      * Reverse the migrations.

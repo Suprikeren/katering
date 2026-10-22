@@ -19,10 +19,9 @@ public function up(): void
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
-        $table->string('slug');
-        $table->string('company_name');
-        $table->text('address');
-        $table->string('phone', 30);
+        $table->string('company_name')->nullable();
+        $table->text('address')->nullable();
+        $table->string('phone', 30)->nullable();
         $table->timestamps();
     });
 }

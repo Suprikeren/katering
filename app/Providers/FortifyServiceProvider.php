@@ -14,7 +14,9 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Fortify;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,12 @@ class FortifyServiceProvider extends ServiceProvider
                 if ($user->hasRole('super-admin')) {
                     return redirect()->route('dashboard.index');
                 }
+                 if ($user->hasRole('merchant')) {
+                    return redirect()->route('dashboard.index');
+                }
+                 if ($user->hasRole('customer')) {
+                    return redirect()->route('home.index');
+                }
             }
         });
         $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
@@ -41,6 +49,19 @@ class FortifyServiceProvider extends ServiceProvider
             {
                 // Redirect ke halaman login setelah logout
                 return redirect()->route('login');
+            }
+        });
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
+             public function toResponse($request)
+            {
+                $user = auth()->user();
+
+                 if ($user->hasRole('merchant')) {
+                    return redirect()->route('dashboard.index');
+                }
+                 if ($user->hasRole('customer')) {
+                    return redirect()->route('home.profile.edit');
+                }
             }
         });
     }

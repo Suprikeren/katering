@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolePermissionSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(MerchantSeeder::class);
+        $this->call(CustomerSeeder::class);
+        $this->call(MenuSeeder::class);
+        $this->call(CateringPermissionSeeder::class);
 
         // $user = User::query()->firstOrCreate(
         //     ['email' => 'super-admin@example.com'],

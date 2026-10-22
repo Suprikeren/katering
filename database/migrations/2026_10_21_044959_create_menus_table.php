@@ -19,7 +19,6 @@ return new class extends Migration
             ->references('id')
             ->on('merchants')
             ->onDelete('cascade');
-        $table->string('slug');
         $table->string('name');
         $table->text('description')->nullable();
         $table->string('photo')->nullable();
