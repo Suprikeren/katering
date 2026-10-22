@@ -12,7 +12,7 @@ Aplikasi katering berbasis Laravel untuk mengelola menu, pesanan, invoice, dan p
 
 1. Clone repository:
    ```bash
-   git clone <URL_REPOSITORY>
+   git clone https://github.com/Suprikeren/katering.git
    ```
 
 2. Masuk ke folder project:
